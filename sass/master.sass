@@ -1,0 +1,261 @@
+@import "reset.css"
+//Mixins
+=font-face($family, $path, $weight: normal, $style: normal)
+  @font-face
+    font-family: $family
+    src: url('#{$path}.eot')
+    src: url('#{$path}.eot?#iefix') format('embedded-opentype'), url('#{$path}.woff') format('woff'), url('#{$path}.ttf') format('truetype')
+    font-weight: $weight
+    font-style: $style
+
+=prefix($property, $val)
+  -webkit-#{$property}: $val
+  -moz-#{$property}: $val
+  -ms-#{$property}: $val
+  -o-#{$property}: $val
+  #{$property}: $val
+
+=backImg($src, $cover)
+  background-image: url('#{$src}')
+  background-repeat: no-repeat
+  background-position: center
+  background-size: $cover
+
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-ms-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
+=button($h)
+  display: block
+  height: $h
+  line-height: $h
+  text-align: center
+  color: #fff
+  border: 2px solid #fff
+  text-transform: uppercase
+  font-family: $ftitles
+  +prefix(transition, all 0.3s ease-out)
+
++font-face('AvenirRegular', 'fonts/Avenir-Roman', 400, normal)
++font-face('AvenirBlack', 'fonts/Avenir-Heavy', 700, bold)
+//VAR
+$fbody : 'AvenirRegular', sans-serif
+$ftitles :  'AvenirBlack', sans-serif
+$desktop: 'min-width:800px'
+$colAzul: #03223f
+//CLASS
+.hideDisplay
+  display: none
+.showDisplay
+  display: block
+.showDisplayFlex
+  display: -webkit-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+.showOpacity
+  opacity: 1
+.hideOpacity
+  opacity: 0
+//BASE
+*
+  margin: 0
+  padding: 0
+* a
+  color: #fff
+  cursor: pointer
+  text-decoration: none
+h1, h2, h3, h4, h5, h6, b
+  font-family: $ftitles
+body
+  position: absolute
+  top: 0
+  left: 0
+  width: 100vw
+  font-size: 16px
+  font-family: $fbody
+  color: #fff
+  background: #5f8999
+  #loading
+    position: fixed
+    top: 0
+    left: 0
+    width: 100vw
+    height: 100vh
+    background: #000
+    z-index: 9000
+    +prefix(flex-direction, column)
+    +prefix(justify-content, center)
+    +prefix(align-items, center)
+    +prefix(transition, opacity 0.5s ease-out 0)
+  #interfaz
+    position: absolute
+    top: 0
+    z-index: 200
+    width: 100vw
+    min-width: 300px
+    height: auto
+    min-height: 300px
+    box-sizing: border-box
+    overflow-y: scroll
+    a.btn
+      +button(40px)
+      width: 180px
+      margin: 25px auto
+    a.btn:hover
+      background: #fff
+      color: $colAzul
+    ul
+      width: 300px
+      margin: 0 auto
+      +prefix(justify-content, space-around)
+    h2
+      display: block
+      width: 80%
+      text-align: center
+      text-transform: uppercase
+      font-size: 1.1rem
+      margin: 0 auto
+      line-height: 1.2
+    #logo
+      z-index: 200
+      position: relative
+      width: 150px
+      height: 201px
+      margin: 50px auto 30px auto
+      +backImg('../img/swingatoms_logotipo.svg', contain)
+    nav#lang
+      position: relative
+      z-index: 200
+      top: 10px
+      right: 10px
+      width: 80px
+      height: 30px
+      float: right
+      a
+        +button(30px)
+      a:hover
+        background: #fff
+        color: $colAzul
+  #main
+    position: absolute
+    top: 0
+    width: 100vw
+    height: 100vh
+    overflow: hidden
+    +backImg('../img/fondo.jpg', cover)
+    #backs
+      position: absolute
+      top: 0
+      width: 100vw
+      height: 100vh
+      div
+        position: absolute
+        top: 0
+        width: 100vw
+        height: 100vh
+      div#mtn
+        z-index: 12
+        top: 40%
+        left: 5%
+        +backImg('../img/montana.png', cover)
+        +prefix(animation, montanaAni 6s ease 0)
+        +prefix(animation-iteration-count, infinite)
+      div#ast
+        z-index: 14
+        left: -8%
+        top: -8%
+        +backImg('../img/astronauta.png', cover)
+        +prefix(animation, astronautaAni 6s ease 0)
+        +prefix(animation-iteration-count, 1)
+      div#wv2
+        z-index: 16
+        left: 13%
+        top: 15%
+        +backImg('../img/wave2.png', cover)
+        +prefix(animation, wave2ani 5s ease 0)
+        +prefix(animation-iteration-count, infinite)
+      div#wv1
+        z-index: 18
+        left: -15%
+        top: 6%
+        +backImg('../img/wave1.png', cover)
+        +prefix(animation, wave1ani 5s ease 0)
+        +prefix(animation-iteration-count, infinite)
+      div#wv0
+        z-index: 20
+        top: 3%
+        left: 10%
+        +backImg('../img/wave0.png', cover)
+        +prefix(animation, wave0ani 5s ease 0)
+        +prefix(animation-iteration-count, infinite)
+      div#back
+        background: rgba(3,34,63,0.4)
+        z-index: 22
+@media screen and (min-width:800px)
+  #interfaz>a.btn
+    margin: 45px auto !important
+  #interfaz>h2
+    margin: 60px auto !important
+    width: 40% !important
+    font-size: 1.3rem !important
+//ANI
++keyframes(montanaAni)
+  from
+    left: 5%
+    top: 40%
+  50%
+    left: 0%
+    top: 10%
++keyframes(astronautaAni)
+  from
+    left: -8%
+    top: -8%
+  50%
+    left: -3%
+    top: 70%
++keyframes(wave2ani)
+  0%
+    left: 13%
+    top: 15%
+  25%
+    left: 15%
+    top: 10%
+  50%
+    left: 8%
+    top: 12%
+  75%
+    left: 10%
+    top: 11%
++keyframes(wave1ani)
+  0%
+    left: -15%
+    top: 6%
+  25%
+    left: -10%
+    top: 4%
+  50%
+    left: -18%
+    top: 4%
+  75%
+    left: -15%
+    top: 2%
++keyframes(wave0ani)
+  0%
+    left: 10%
+    top: 3%
+  25%
+    left: 5%
+    top: 3%
+  50%
+    left: 10%
+    top: 1%
+  75%
+    left: 2%
+    top: 1%
